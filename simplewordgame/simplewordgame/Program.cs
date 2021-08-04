@@ -9,13 +9,44 @@ namespace simplewordgame
     { 
         static void Main(string[] args)
         {
+
+            //windy
+            //w_____
             char[] chr_gameWord = getNewWord();
-
             char[] chr_puzzle = initialize_newGame(chr_gameWord);
-                     
-   
+            char key;
+            string str;
+            int count = 0;
+            Console.WriteLine(chr_gameWord);
+            Console.WriteLine("Welcome \n");
 
-           
+            do
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine(chr_puzzle);
+                //write code here to sanitize the input and check if it's in between A-Z
+                key = char.ToUpper(Console.ReadKey().KeyChar);
+
+                for (int i = 0; i < chr_gameWord.Length; i++)
+                {
+                    if (chr_gameWord[i] == key)
+                    {
+
+                        chr_puzzle[i] = key;
+                    }
+
+                }
+                count++;
+
+                str = new string(chr_puzzle);
+
+            } while (str.Contains("_"));
+
+
+
+            Console.WriteLine("\nThe word is " + str + "\n");
+            Console.WriteLine("You guessed the word in " + count + " attempts.");
+
         }
 
         private static char[] initialize_newGame(char[] chr_gameWord)
@@ -51,5 +82,10 @@ namespace simplewordgame
             return wordList[wordIndex].ToUpper().ToCharArray();
 
         }
+
+        private static void printWord()
+        {
+        }
+
     }
 }
